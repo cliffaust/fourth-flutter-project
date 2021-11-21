@@ -8,7 +8,7 @@ class WorldTime {
   String flag;
   String url;
 
-  WorldTime({required this.location, required this.time, required this.flag, required this.url});
+  WorldTime({required this.location, this.time = '', required this.flag, required this.url});
 
   void getTime() async {
     Response response = await get(Uri.parse("http://worldtimeapi.org/api/timezone/$url"));
@@ -22,6 +22,6 @@ class WorldTime {
 
     now = now.add(Duration(hours: int.parse(offset)));
 
-    print(now);
+    time = now.toString();
   }
 }
