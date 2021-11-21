@@ -19,11 +19,8 @@ class _LoadingState extends State<Loading> {
     WorldTime worldTime = WorldTime(location: 'Paris', flag: 'france.jpeg', url: 'Europe/Paris');
 
     await worldTime.getTime();
-    time = worldTime.time;
 
-    setState(() {
-      time = time;
-    });
+    Navigator.pushNamed(context, "/home");
   }
 
   @override
@@ -35,11 +32,11 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(time),
+            padding: EdgeInsets.all(20.0),
+            child: Text("Loading"),
           )
       ),
     );
