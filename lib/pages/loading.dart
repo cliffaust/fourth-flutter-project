@@ -13,32 +13,35 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  void getData() async {
-    Response response = await get(Uri.parse("http://worldtimeapi.org/api/timezone/Europe/London"));
+  String time = "Loading...";
 
-    Map data = jsonDecode(response.body);
+  void setupWorldTime() async {
+    WorldTime worldTime = WorldTime(location: 'Paris', flag: 'france.jpeg', url: 'Europe/Paris');
 
-    String datetime = data['datetime'];
-    String offset = data['utc_offset'].substring(1, 3);
+    await worldTime.getTime();
+    time = worldTime.time;
 
-    DateTime now = DateTime.parse(datetime);
-
-    now = now.add(Duration(hours: int.parse(offset)));
-
-    print(now);
+    setState(() {
+      time = time;
+    });
   }
 
   @override
   void initState() {
     super.initState();
 
-    getData();
+    setupWorldTime();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("Loading screen"),
+    return Scaffold(
+      body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(time),
+          )
+      ),
     );
   }
 }
