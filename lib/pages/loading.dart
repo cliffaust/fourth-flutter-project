@@ -13,14 +13,12 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  String time = "Loading...";
-
   void setupWorldTime() async {
     WorldTime worldTime = WorldTime(location: 'Paris', flag: 'france.jpeg', url: 'Europe/Paris');
 
     await worldTime.getTime();
 
-    Navigator.pushNamed(context, "/home");
+    Navigator.pushReplacementNamed(context, "/home");
   }
 
   @override
@@ -36,7 +34,7 @@ class _LoadingState extends State<Loading> {
       body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(20.0),
-            child: Text("Loading"),
+            child: Text("Loading..."),
           )
       ),
     );
