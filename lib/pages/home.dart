@@ -52,23 +52,39 @@ class _HomeState extends State<Home> {
                 ),
                 const SizedBox(height: 10.0,),
                 Center(
-                  child: Text(
-                      location.location,
+                  child: location.isDay ? Text(
+                    location.location,
                     style: const TextStyle(
-                        fontSize: 16.0,
-                      fontWeight: FontWeight.w500
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color:  Colors.black,
+                    ),
+                  ) : Text(
+                    location.location,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color:  Colors.white,
                     ),
                   ),
                 ),
                 const SizedBox(height: 5.0,),
                 Center(
-                  child: Text(
+                  child: location.isDay ? Text(
                       location.time,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 30.0
+                      fontSize: 40.0,
+                      color:  Colors.black,
                     ),
-                  ),
+                  ) : Text(
+                    location.time,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40.0,
+                      color:  Colors.white,
+                    ),
+                  )
                 )
               ],
             )
