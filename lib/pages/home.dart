@@ -38,7 +38,16 @@ class _HomeState extends State<Home> {
         child: SafeArea(
             child: Column(
               children: [
-                TextButton.icon(
+                location.isDay ? TextButton.icon(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/location");
+                    },
+                    style: TextButton.styleFrom(
+                      primary: Colors.black
+                    ),
+                    icon: const Icon(Icons.edit_location),
+                    label: const Text("Edit Location")
+                ) : TextButton.icon(
                     onPressed: () {
                       Navigator.pushNamed(context, "/location");
                     },
