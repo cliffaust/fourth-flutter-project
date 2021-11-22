@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
 import 'package:world_time/services/world_time.dart';
+import 'package:world_time/services/location.dart';
 
 
 class Loading extends StatefulWidget {
@@ -14,11 +13,15 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
 
   void setupWorldTime() async {
-    WorldTime worldTime = WorldTime(location: 'Paris', flag: 'france.jpeg', url: 'Europe/Paris');
+    WorldTime worldTime = WorldTime(location: 'Paris', flag: 'assets/france.jpeg', url: 'Europe/Paris');
 
     await worldTime.getTime();
 
-    Navigator.pushReplacementNamed(context, "/home");
+    Navigator.pushReplacementNamed(context, "/home", arguments: Location(
+        location: worldTime.location,
+        flag: worldTime.flag,
+        time: worldTime.time
+    ));
   }
 
   @override
@@ -34,7 +37,14 @@ class _LoadingState extends State<Loading> {
       body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(20.0),
-            child: Text("Loading..."),
+            child: Center(child: Text(
+              "Loading...",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+              ),
+            )
+            ),
           )
       ),
     );
