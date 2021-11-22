@@ -21,7 +21,8 @@ class _LoadingState extends State<Loading> {
     Navigator.pushReplacementNamed(context, "/home", arguments: Location(
         location: worldTime.location,
         flag: worldTime.flag,
-        time: worldTime.time
+        time: worldTime.time,
+        isDay: worldTime.isDay,
     ));
   }
 
