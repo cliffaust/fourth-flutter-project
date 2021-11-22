@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_time/services/world_time.dart';
+import 'package:world_time/services/location.dart';
 
 
 class ChooseLocation extends StatefulWidget {
@@ -49,7 +50,18 @@ class _ChooseLocationState extends State<ChooseLocation> {
               elevation: 0.0,
               margin: const EdgeInsets.only(top: 10.0),
               child: ListTile(
-                onTap: () {},
+                onTap: () async {
+                  WorldTime worldTime = WorldTime(location: locations[index].location, flag: locations[index].flag, url: locations[index].url);
+
+                  await worldTime.getTime();
+
+                  Navigator.pushReplacementNamed(context, "/home", arguments: Location(
+                    location: worldTime.location,
+                    flag: worldTime.flag,
+                    time: worldTime.time,
+                    isDay: worldTime.isDay,
+                  ));
+                },
                 leading: CircleAvatar(
                   backgroundImage: AssetImage(locations[index].flag),
                 ),
