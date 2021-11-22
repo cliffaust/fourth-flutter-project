@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
                     location.time,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 28.0
+                    fontSize: 30.0
                   ),
                 ),
               )
